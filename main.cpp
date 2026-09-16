@@ -1,6 +1,7 @@
-#include "user.cpp"
+#include "admin.cpp"
 
 int main() {
+    admin a;
     int choice;
 
     do {
@@ -8,18 +9,24 @@ int main() {
         cout << "            PLACEMENT BOARD             " << endl;
         cout << "  COLLEGE PLACEMENT MANAGEMENT SYSTEM   " << endl;
         cout << "========================================" << endl;
-        cout << "1. Admin Login (Coming Soon)" << endl;
-        cout << "2. Student Login (Coming Soon)" << endl;
-        cout << "3. Company Login (Coming Soon)" << endl;
+        cout << "1. Admin Login" << endl;
+        cout << "2. Student Login" << endl;
+        cout << "3. Company Login" << endl;
         cout << "4. Exit" << endl;
         cout << "Enter choice: ";
         cin >> choice;
 
         switch (choice) {
             case 1:
+                if (a.login()) {
+                    a.showDashboard();
+                }
+                break;
             case 2:
+                cout << "\n[Student module]" << endl;
+                break;
             case 3:
-                cout << "\nModule under implementation by team..." << endl;
+                cout << "\n[Company module]" << endl;
                 break;
             case 4:
                 cout << "\nThank You!" << endl;
