@@ -1,4 +1,4 @@
-#include "student.cpp"
+#include "company.cpp"
 
 // DERIVED CLASS: Admin inherits from User
 class admin : public User {
@@ -8,14 +8,14 @@ private:
 public:
     bool login() override {
         string user, pass;
-
+        
         cout << "\n========================================" << endl;
         cout << "              ADMIN LOGIN               " << endl;
         cout << "========================================" << endl;
-
+        
         cout << "Enter Username: ";
         cin >> user;
-
+        
         cout << "Enter Password: ";
         pass = getMaskedPassword();
 
@@ -70,12 +70,38 @@ public:
     }
 
     void companyManagement() {
-        cout << "\n[Company Management module loading... Member 3 will link company.cpp]" << endl;
+        int choice;
+        company c;
+
+        do {
+            cout << "\n========================================" << endl;
+            cout << "          COMPANY MANAGEMENT            " << endl;
+            cout << "========================================" << endl;
+            cout << "1. Add Company" << endl;
+            cout << "2. View All Companies" << endl;
+            cout << "3. Back" << endl;
+            cout << "Enter choice: ";
+            cin >> choice;
+
+            switch (choice) {
+                case 1:
+                    c.getCompanyData();
+                    c.saveToFile();
+                    break;
+                case 2:
+                    c.viewAllCompanies();
+                    break;
+                case 3:
+                    break;
+                default:
+                    cout << "\nInvalid Choice! Try again." << endl;
+            }
+        } while (choice != 3);
     }
 
     void showDashboard() {
         int choice;
-
+        
         do {
             cout << "\n========================================" << endl;
             cout << "            ADMIN DASHBOARD             " << endl;

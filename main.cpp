@@ -3,6 +3,7 @@
 int main() {
     admin a;
     student s;
+    company c;
     int choice;
 
     do {
@@ -29,7 +30,9 @@ int main() {
                 }
                 break;
             case 3:
-                cout << "\n[Company module being pushed by Member 3]" << endl;
+                if (c.login()) {
+                    c.showDashboard();
+                }
                 break;
             case 4:
                 cout << "\nThank You!" << endl;
