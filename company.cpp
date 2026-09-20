@@ -23,10 +23,16 @@ public:
         }
 
         cout << "Enter Industry: ";
-        cin >> industry;
+        getline(cin, industry);
+        for (int i = 0; i < industry.length(); i++) {
+            if (industry[i] == ' ') industry[i] = '_';
+        }
         
         cout << "Enter Location: ";
-        cin >> location;
+        getline(cin, location);
+        for (int i = 0; i < location.length(); i++) {
+            if (location[i] == ' ') location[i] = '_';
+        }
 
         cout << "Enter Company Email: ";
         cin >> email;
@@ -37,10 +43,20 @@ public:
 
     void displayCompanyData() {
         string displayName = companyName;
+        string displayIndustry = industry;
+        string displayLocation = location;
+
         for (int i = 0; i < displayName.length(); i++) {
             if (displayName[i] == '_') displayName[i] = ' ';
         }
-        cout << id << "\t" << displayName << "\t\t" << industry << "\t" << location << "\t" << email << endl;
+        for (int i = 0; i < displayIndustry.length(); i++) {
+            if (displayIndustry[i] == '_') displayIndustry[i] = ' ';
+        }
+        for (int i = 0; i < displayLocation.length(); i++) {
+            if (displayLocation[i] == '_') displayLocation[i] = ' ';
+        }
+
+        cout << id << "\t" << displayName << "\t\t" << displayIndustry << "\t\t" << displayLocation << "\t" << email << endl;
     }
 
     void saveToFile() {
@@ -131,14 +147,24 @@ public:
             switch (choice) {
                 case 1: {
                     string displayName = companyName;
+                    string displayIndustry = industry;
+                    string displayLocation = location;
+
                     for (int i = 0; i < displayName.length(); i++) {
                         if (displayName[i] == '_') displayName[i] = ' ';
                     }
+                    for (int i = 0; i < displayIndustry.length(); i++) {
+                        if (displayIndustry[i] == '_') displayIndustry[i] = ' ';
+                    }
+                    for (int i = 0; i < displayLocation.length(); i++) {
+                        if (displayLocation[i] == '_') displayLocation[i] = ' ';
+                    }
+                    
                     cout << "\n--- COMPANY PROFILE ---" << endl;
                     cout << "ID: " << id << endl;
                     cout << "Name: " << displayName << endl;
-                    cout << "Industry: " << industry << endl;
-                    cout << "Location: " << location << endl;
+                    cout << "Industry: " << displayIndustry << endl;
+                    cout << "Location: " << displayLocation << endl;
                     cout << "Email: " << email << endl;
                     break;
                 }
