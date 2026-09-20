@@ -2,6 +2,7 @@
 
 int main() {
     admin a;
+    student s;
     int choice;
 
     do {
@@ -23,10 +24,12 @@ int main() {
                 }
                 break;
             case 2:
-                cout << "\n[Student module]" << endl;
+                if (s.login()) {
+                    s.showDashboard();
+                }
                 break;
             case 3:
-                cout << "\n[Company module]" << endl;
+                cout << "\n[Company module being pushed by Member 3]" << endl;
                 break;
             case 4:
                 cout << "\nThank You!" << endl;

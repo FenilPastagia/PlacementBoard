@@ -1,4 +1,4 @@
-#include "user.cpp"
+#include "student.cpp"
 
 // DERIVED CLASS: Admin inherits from User
 class admin : public User {
@@ -8,14 +8,14 @@ private:
 public:
     bool login() override {
         string user, pass;
-        
+
         cout << "\n========================================" << endl;
         cout << "              ADMIN LOGIN               " << endl;
         cout << "========================================" << endl;
-        
+
         cout << "Enter Username: ";
         cin >> user;
-        
+
         cout << "Enter Password: ";
         pass = getMaskedPassword();
 
@@ -40,16 +40,42 @@ public:
     }
 
     void studentManagement() {
-        cout << "\n[Student Management module loading...]" << endl;
+        int choice;
+        student s;
+
+        do {
+            cout << "\n========================================" << endl;
+            cout << "          STUDENT MANAGEMENT            " << endl;
+            cout << "========================================" << endl;
+            cout << "1. Add Student" << endl;
+            cout << "2. View All Students" << endl;
+            cout << "3. Back" << endl;
+            cout << "Enter choice: ";
+            cin >> choice;
+
+            switch (choice) {
+                case 1:
+                    s.getStudentData();
+                    s.saveToFile();
+                    break;
+                case 2:
+                    s.viewAllStudents();
+                    break;
+                case 3:
+                    break;
+                default:
+                    cout << "\nInvalid Choice! Try again." << endl;
+            }
+        } while (choice != 3);
     }
 
     void companyManagement() {
-        cout << "\n[Company Management module loading...]" << endl;
+        cout << "\n[Company Management module loading... Member 3 will link company.cpp]" << endl;
     }
 
     void showDashboard() {
         int choice;
-        
+
         do {
             cout << "\n========================================" << endl;
             cout << "            ADMIN DASHBOARD             " << endl;
