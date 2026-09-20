@@ -1,5 +1,3 @@
-#include "user.cpp"
-
 // DERIVED CLASS: Company inherits from User
 class company : public User {
 private:
@@ -20,7 +18,6 @@ public:
         cout << "Enter Company Name: ";
         cin >> ws;
         getline(cin, companyName);
-        
         for (int i = 0; i < companyName.length(); i++) {
             if (companyName[i] == ' ') companyName[i] = '_';
         }
@@ -52,7 +49,6 @@ public:
             cout << "\nError saving to data/company.txt!" << endl;
             return;
         }
-        
         file << id << " " << companyName << " " << industry << " " << location << " " << email << " " << password << "\n";
         file.close();
         cout << "\nCompany Added Successfully!" << endl;
@@ -109,7 +105,6 @@ public:
                 for (int i = 0; i < displayName.length(); i++) {
                     if (displayName[i] == '_') displayName[i] = ' ';
                 }
-                
                 cout << "\nLogin Successful! Welcome, " << displayName << endl;
                 return true;
             }
@@ -122,7 +117,6 @@ public:
 
     void showDashboard() {
         int choice;
-
         do {
             cout << "\n========================================" << endl;
             cout << "           COMPANY DASHBOARD            " << endl;
@@ -140,7 +134,6 @@ public:
                     for (int i = 0; i < displayName.length(); i++) {
                         if (displayName[i] == '_') displayName[i] = ' ';
                     }
-                    
                     cout << "\n--- COMPANY PROFILE ---" << endl;
                     cout << "ID: " << id << endl;
                     cout << "Name: " << displayName << endl;

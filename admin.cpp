@@ -1,5 +1,3 @@
-#include "company.cpp"
-
 // DERIVED CLASS: Admin inherits from User
 class admin : public User {
 private:
@@ -9,7 +7,7 @@ public:
     bool login() override {
         string user, pass;
         
-        cout << "\n========================================" << endl;
+        cout << "========================================" << endl;
         cout << "              ADMIN LOGIN               " << endl;
         cout << "========================================" << endl;
         
@@ -125,11 +123,19 @@ public:
                     companyManagement();
                     break;
                 case 3:
+                    cout << "\n[Placement Drive Management Coming Soon]" << endl;
+                    break;
                 case 4:
+                    cout << "\n[Application Management Coming Soon]" << endl;
+                    break;
                 case 5:
+                    cout << "\n[Selection Management Coming Soon]" << endl;
+                    break;
                 case 6:
+                    cout << "\n[Reports Coming Soon]" << endl;
+                    break;
                 case 7:
-                    cout << "\n[Module under development for Phase 2]" << endl;
+                    cout << "\n[Search Coming Soon]" << endl;
                     break;
                 case 8:
                     cout << "\nLogging out..." << endl;

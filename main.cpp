@@ -1,3 +1,5 @@
+#include "student.cpp"
+#include "company.cpp"
 #include "admin.cpp"
 
 int main() {

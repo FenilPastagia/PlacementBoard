@@ -14,14 +14,14 @@ public:
         cout << "\n========================================" << endl;
         cout << "              ADD STUDENT               " << endl;
         cout << "========================================" << endl;
-
+        
         cout << "Enter Student ID: ";
         cin >> id;
-
+        
         cout << "Enter Full Name: ";
         cin >> ws;
         getline(cin, name);
-
+        
         for (int i = 0; i < name.length(); i++) {
             if (name[i] == ' ') {
                 name[i] = '_';
@@ -30,16 +30,16 @@ public:
 
         cout << "Enter Email: ";
         cin >> email;
-
+        
         cout << "Enter Course (e.g. MCA/BCA): ";
         cin >> course;
-
+        
         cout << "Enter CGPA: ";
         cin >> cgpa;
-
+        
         cout << "Enter Active Backlogs: ";
         cin >> backlogs;
-
+        
         cout << "Set Password for Student: ";
         password = getMaskedPassword();
     }
@@ -60,7 +60,7 @@ public:
             cout << "\nError saving to data/student.txt!" << endl;
             return;
         }
-
+        
         file << id << " " << name << " " << email << " " << course << " " << cgpa << " " << backlogs << " " << password << "\n";
         file.close();
         cout << "\nStudent Added Successfully!" << endl;
@@ -92,7 +92,7 @@ public:
 
         cout << "Enter Email: ";
         cin >> email;
-
+        
         cout << "Enter Password: ";
         password = getMaskedPassword();
 
@@ -114,12 +114,12 @@ public:
                 course = fCourse;
                 cgpa = fCgpa;
                 backlogs = fBacklogs;
-
+                
                 string displayName = name;
                 for (int i = 0; i < displayName.length(); i++) {
                     if (displayName[i] == '_') displayName[i] = ' ';
                 }
-
+                
                 cout << "\nLogin Successful! Welcome, " << displayName << endl;
                 return true;
             }
@@ -151,7 +151,7 @@ public:
                     for (int i = 0; i < displayName.length(); i++) {
                         if (displayName[i] == '_') displayName[i] = ' ';
                     }
-
+                    
                     cout << "\n--- MY PROFILE ---" << endl;
                     cout << "ID: " << id << endl;
                     cout << "Name: " << displayName << endl;
