@@ -1,3 +1,4 @@
+#pragma once
 #include "user.cpp"
 
 // DERIVED CLASS: Student inherits from User
@@ -177,5 +178,123 @@ public:
                     cout << "\nInvalid Choice! Try again." << endl;
             }
         } while (choice != 5);
+    }
+
+    void deleteStudent(int targetId) {
+        ifstream file("data/student.txt");
+        if (!file) {
+            cout << "\nError: data/student.txt file not found!" << endl;
+            return;
+        }
+
+        ofstream temp("data/temp.txt");
+        bool found = false;
+
+        while (file >> id >> name >> email >> course >> cgpa >> backlogs >> password) {
+            if (id == targetId) {
+                found = true;
+            } else {
+                temp << id << " " << name << " " << email << " " << course << " " << cgpa << " " << backlogs << " " << password << "\n";
+            }
+        }
+
+        file.close();
+        temp.close();
+
+        remove("data/student.txt");
+        rename("data/temp.txt", "data/student.txt");
+
+        if (found) {
+            cout << "\nStudent record deleted successfully!" << endl;
+        } else {
+            cout << "\nStudent with ID " << targetId << " not found!" << endl;
+        }
+    }
+
+    void updateStudent(int targetId) {
+        ifstream file("data/student.txt");
+        if (!file) {
+            cout << "\nError: data/student.txt file not found!" << endl;
+            return;
+        }
+
+        ofstream temp("data/temp.txt");
+        bool found = false;
+
+        while (file >> id >> name >> email >> course >> cgpa >> backlogs >> password) {
+            if (id == targetId) {
+                found = true;
+                int choice;
+                do {
+                    cout << "\n========================================" << endl;
+                    cout << "          UPDATE STUDENT (" << targetId << ")         " << endl;
+                    cout << "========================================" << endl;
+                    cout << "1. Edit Name" << endl;
+                    cout << "2. Edit Email" << endl;
+                    cout << "3. Edit Course" << endl;
+                    cout << "4. Edit CGPA" << endl;
+                    cout << "5. Edit Backlogs" << endl;
+                    cout << "6. Edit Password" << endl;
+                    cout << "7. Save & Finish Updating" << endl;
+                    cout << "Select field to update: ";
+                    cin >> choice;
+
+                    switch (choice) {
+                        case 1:
+                            cout << "Enter New Name: ";
+                            cin >> ws;
+                            getline(cin, name);
+                            for (int i = 0; i < name.length(); i++) {
+                                if (name[i] == ' ') name[i] = '_';
+                            }
+                            cout << "-> Name updated!" << endl;
+                            break;
+                        case 2:
+                            cout << "Enter New Email: ";
+                            cin >> email;
+                            cout << "-> Email updated!" << endl;
+                            break;
+                        case 3:
+                            cout << "Enter New Course: ";
+                            cin >> course;
+                            cout << "-> Course updated!" << endl;
+                            break;
+                        case 4:
+                            cout << "Enter New CGPA: ";
+                            cin >> cgpa;
+                            cout << "-> CGPA updated!" << endl;
+                            break;
+                        case 5:
+                            cout << "Enter New Backlogs: ";
+                            cin >> backlogs;
+                            cout << "-> Backlogs updated!" << endl;
+                            break;
+                        case 6:
+                            cout << "Enter New Password: ";
+                            password = getMaskedPassword();
+                            cout << "-> Password updated!" << endl;
+                            break;
+                        case 7:
+                            cout << "Saving changes..." << endl;
+                            break;
+                        default:
+                            cout << "Invalid selection! Try again." << endl;
+                    }
+                } while (choice != 7);
+            }
+            temp << id << " " << name << " " << email << " " << course << " " << cgpa << " " << backlogs << " " << password << "\n";
+        }
+
+        file.close();
+        temp.close();
+
+        remove("data/student.txt");
+        rename("data/temp.txt", "data/student.txt");
+
+        if (found) {
+            cout << "\nStudent record updated successfully!" << endl;
+        } else {
+            cout << "\nStudent with ID " << targetId << " not found!" << endl;
+        }
     }
 };

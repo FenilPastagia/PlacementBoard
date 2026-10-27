@@ -1,3 +1,7 @@
+#include "user.cpp"
+#include "company.cpp"
+#include "student.cpp"
+
 // DERIVED CLASS: Admin inherits from User
 class admin : public User {
 private:
@@ -38,19 +42,19 @@ public:
     }
 
     void studentManagement() {
-        int choice;
+        int choice, targetId;
         student s;
-
         do {
             cout << "\n========================================" << endl;
             cout << "          STUDENT MANAGEMENT            " << endl;
             cout << "========================================" << endl;
             cout << "1. Add Student" << endl;
             cout << "2. View All Students" << endl;
-            cout << "3. Back" << endl;
+            cout << "3. Update Student" << endl;
+            cout << "4. Delete Student" << endl;
+            cout << "5. Back" << endl;
             cout << "Enter choice: ";
             cin >> choice;
-
             switch (choice) {
                 case 1:
                     s.getStudentData();
@@ -60,27 +64,37 @@ public:
                     s.viewAllStudents();
                     break;
                 case 3:
+                    cout << "Enter Student ID to Update: ";
+                    cin >> targetId;
+                    s.updateStudent(targetId);
+                    break;
+                case 4:
+                    cout << "Enter Student ID to Delete: ";
+                    cin >> targetId;
+                    s.deleteStudent(targetId);
+                    break;
+                case 5:
                     break;
                 default:
                     cout << "\nInvalid Choice! Try again." << endl;
             }
-        } while (choice != 3);
+        } while (choice != 5);
     }
 
     void companyManagement() {
-        int choice;
+        int choice, targetId;
         company c;
-
         do {
             cout << "\n========================================" << endl;
             cout << "          COMPANY MANAGEMENT            " << endl;
             cout << "========================================" << endl;
             cout << "1. Add Company" << endl;
             cout << "2. View All Companies" << endl;
-            cout << "3. Back" << endl;
+            cout << "3. Update Company" << endl;
+            cout << "4. Delete Company" << endl;
+            cout << "5. Back" << endl;
             cout << "Enter choice: ";
             cin >> choice;
-
             switch (choice) {
                 case 1:
                     c.getCompanyData();
@@ -90,11 +104,21 @@ public:
                     c.viewAllCompanies();
                     break;
                 case 3:
+                    cout << "Enter Company ID to Update: ";
+                    cin >> targetId;
+                    c.updateCompany(targetId);
+                    break;
+                case 4:
+                    cout << "Enter Company ID to Delete: ";
+                    cin >> targetId;
+                    c.deleteCompany(targetId);
+                    break;
+                case 5:
                     break;
                 default:
                     cout << "\nInvalid Choice! Try again." << endl;
             }
-        } while (choice != 3);
+        } while (choice != 5);
     }
 
     void showDashboard() {

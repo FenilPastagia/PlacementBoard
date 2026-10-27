@@ -1,3 +1,6 @@
+#pragma once
+#include "user.cpp"
+
 // DERIVED CLASS: Company inherits from User
 class company : public User {
 private:
@@ -181,5 +184,125 @@ public:
                     cout << "\nInvalid Choice! Try again." << endl;
             }
         } while (choice != 4);
+    }
+
+    void deleteCompany(int targetId) {
+        ifstream file("data/company.txt");
+        if (!file) {
+            cout << "\nError: data/company.txt file not found!" << endl;
+            return;
+        }
+
+        ofstream temp("data/temp.txt");
+        bool found = false;
+
+        while (file >> id >> companyName >> industry >> location >> email >> password) {
+            if (id == targetId) {
+                found = true;
+            } else {
+                temp << id << " " << companyName << " " << industry << " " << location << " " << email << " " << password << "\n";
+            }
+        }
+
+        file.close();
+        temp.close();
+
+        remove("data/company.txt");
+        rename("data/temp.txt", "data/company.txt");
+
+        if (found) {
+            cout << "\nCompany record deleted successfully!" << endl;
+        } else {
+            cout << "\nCompany with ID " << targetId << " not found!" << endl;
+        }
+    }
+
+    void updateCompany(int targetId) {
+        ifstream file("data/company.txt");
+        if (!file) {
+            cout << "\nError: data/company.txt file not found!" << endl;
+            return;
+        }
+
+        ofstream temp("data/temp.txt");
+        bool found = false;
+
+        while (file >> id >> companyName >> industry >> location >> email >> password) {
+            if (id == targetId) {
+                found = true;
+                int choice;
+                do {
+                    cout << "\n========================================" << endl;
+                    cout << "          UPDATE COMPANY (" << targetId << ")         " << endl;
+                    cout << "========================================" << endl;
+                    cout << "1. Edit Company Name" << endl;
+                    cout << "2. Edit Industry" << endl;
+                    cout << "3. Edit Location" << endl;
+                    cout << "4. Edit Email" << endl;
+                    cout << "5. Edit Password" << endl;
+                    cout << "6. Save & Finish Updating" << endl;
+                    cout << "Select field to update: ";
+                    cin >> choice;
+
+                    switch (choice) {
+                        case 1:
+                            cout << "Enter New Company Name: ";
+                            cin >> ws;
+                            getline(cin, companyName);
+                            for (int i = 0; i < companyName.length(); i++) {
+                                if (companyName[i] == ' ') companyName[i] = '_';
+                            }
+                            cout << "-> Company Name updated!" << endl;
+                            break;
+                        case 2:
+                            cout << "Enter New Industry: ";
+                            cin >> ws;
+                            getline(cin, industry);
+                            for (int i = 0; i < industry.length(); i++) {
+                                if (industry[i] == ' ') industry[i] = '_';
+                            }
+                            cout << "-> Industry updated!" << endl;
+                            break;
+                        case 3:
+                            cout << "Enter New Location: ";
+                            cin >> ws;
+                            getline(cin, location);
+                            for (int i = 0; i < location.length(); i++) {
+                                if (location[i] == ' ') location[i] = '_';
+                            }
+                            cout << "-> Location updated!" << endl;
+                            break;
+                        case 4:
+                            cout << "Enter New Email: ";
+                            cin >> email;
+                            cout << "-> Email updated!" << endl;
+                            break;
+                        case 5:
+                            cout << "Enter New Password: ";
+                            password = getMaskedPassword();
+                            cout << "-> Password updated!" << endl;
+                            break;
+                        case 6:
+                            cout << "Saving changes..." << endl;
+                            break;
+                        default:
+                            cout << "Invalid selection! Try again." << endl;
+                    }
+                } while (choice != 6);
+            }
+            temp << id << " " << companyName << " " << industry << " " << location << " " << email << " " << password << "\n";
+        }
+
+        file.close();
+        temp.close();
+
+        remove("data/company.txt");
+        rename("data/temp.txt", "data/company.txt");
+
+        if (found) {
+            cout << "\nCompany record updated successfully!" << endl;
+        } else {
+            cout << "\nCompany with ID " << targetId << " not found!" << endl;
+        }
     }
 };
